@@ -1,5 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
-const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
+const { colors } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
@@ -7,9 +7,9 @@ module.exports = async function onMessage(message) {
   const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
 
   const Users = await this.database.user.getOrCreate(message.author.id)
-  if (guildDocument.antSpam) {
-    AntiSpamUtils.verify(this, message)
-  }
+  // if (guildDocument.antSpam) {
+  //   AntiSpamUtils.verify(this, message)
+  // }
 
   const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
   if (message.content.match(mentionRegex)) {
@@ -48,14 +48,14 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if ((guildDocument?.antInvite && !message.member?.permissions.has('ADMINISTRATOR'))) {
-    if (AntiInviteUtils.scanMessage(message.content)) {
-      message.delete()
-      message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
-        message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
-      })
-    }
-  }
+  // if ((guildDocument?.antInvite && !message.member?.permissions.has('ADMINISTRATOR'))) {
+  //   if (AntiInviteUtils.scanMessage(message.content)) {
+  //     message.delete()
+  //     message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
+  //       message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
+  //     })
+  //   }
+  // }
 
   const prefix = guildDocument.prefix
   if (!message.content.startsWith(prefix)) return
