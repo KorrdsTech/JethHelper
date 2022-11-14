@@ -57,6 +57,13 @@ module.exports = async function onMessage(message) {
   //   }
   // }
 
+  const url = ['http://', 'https://']
+  if (message.guild.id === '1001368891160805506') {
+    if (message.channel.id === '1001368891827683397') {
+      if (message.content.match(url)) return message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+    }
+  }
+
   const prefix = guildDocument.prefix
   if (!message.content.startsWith(prefix)) return
   if (Users.blacklist) {
