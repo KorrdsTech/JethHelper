@@ -14,7 +14,10 @@ module.exports = async function onMessage(message) {
   const url = ['http://', 'https://']
   if (message.guild.id === '1001368891160805506') {
     if (message.channel.id === '1001368891827683397') {
-      if (message.content.startsWith(url)) return message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+      if (message.content.startsWith(url)) {
+        message.delete()
+        return message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+      }
     }
   }
 
