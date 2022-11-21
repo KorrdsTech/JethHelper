@@ -11,7 +11,7 @@ module.exports = async function onMessage(message) {
   //   AntiSpamUtils.verify(this, message)
   // }
  
-  if (message.content.includes)('https://tenor.com') { 
+  if (message.content.includes('https://tenor.com')) { 
     return
   } else if (message.content.includes('https://')) {
     if (message.channel.id === '1001368891827683397') {
