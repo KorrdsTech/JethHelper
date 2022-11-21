@@ -11,7 +11,9 @@ module.exports = async function onMessage(message) {
   //   AntiSpamUtils.verify(this, message)
   // }
  
-  if (message.content.includes('https://')) {
+  if (message.content.includes)('https://tenor.com') { 
+    return
+  } else if (message.content.includes('https://')) {
     if (message.channel.id === '1001368891827683397') {
       message.delete(1)
       await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
